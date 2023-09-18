@@ -1,15 +1,62 @@
-import { getCollectionProducts } from 'lib/shopify';
+// import { getCollectionProducts } from 'lib/shopify';
 import Link from 'next/link';
 import { GridTileImage } from './grid/tile';
+import tshirt1 from "../images/tshirt-mockup.jpg"
 
 export async function Carousel() {
   // Collections that start with `hidden-*` are hidden from the search page.
-  const products = await getCollectionProducts({ collection: 'hidden-homepage-carousel' });
+  // const products = await getCollectionProducts({ collection: 'hidden-homepage-carousel' });
 
-  if (!products?.length) return null;
+  // if (!products?.length) return null;
 
+  const products = [{
+    id: 1,
+    handle: "shirt",
+    description: "Nothin something",
+    descriptionHtml: "Nothin something",
+    title: "Shirt",
+    availableForSale: false,
+    selectedOptions: [{
+      name: "color",
+      value: "black"
+    }],
+    price: {
+      amount: "700",
+      currencyCode: "INR"
+    },
+  }, {
+    id: 2,
+    handle: "shirt",
+    description: "Nothin something",
+    descriptionHtml: "Nothin something",
+    title: "Shirt",
+    availableForSale: false,
+    selectedOptions: [{
+      name: "color",
+      value: "black"
+    }],
+    price: {
+      amount: "700",
+      currencyCode: "INR"
+    },
+  }, {
+    id: 3,
+    handle: "shirt",
+    description: "Nothin something",
+    descriptionHtml: "Nothin something",
+    title: "Shirt",
+    availableForSale: false,
+    selectedOptions: [{
+      name: "color",
+      value: "black"
+    }],
+    price: {
+      amount: "700",
+      currencyCode: "INR"
+    },
+  }];
   // Purposefully duplicating products to make the carousel loop and not run out of products on wide screens.
-  const carouselProducts = [...products, ...products, ...products];
+  const carouselProducts = [...products, ...products, ...products, ...products];
 
   return (
     <div className=" w-full overflow-x-auto pb-6 pt-1">
@@ -24,10 +71,10 @@ export async function Carousel() {
                 alt={product.title}
                 label={{
                   title: product.title,
-                  amount: product.priceRange.maxVariantPrice.amount,
-                  currencyCode: product.priceRange.maxVariantPrice.currencyCode
+                  amount: product.price.amount,
+                  currencyCode: product.price.currencyCode
                 }}
-                src={product.featuredImage?.url}
+                src={tshirt1}
                 fill
                 sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
               />
